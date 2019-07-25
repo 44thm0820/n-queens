@@ -173,7 +173,7 @@
       // do an if statement inside loop return true
       // if for loop doesn't return true, return false.
       var arr = this.rows();
-      for (let i = 0; i < arr.length; i++) {
+      for (let i = -(arr.length - 1); i < arr.length; i++) {
         if (this.hasMajorDiagonalConflictAt(i)) {
           return true;
         }
