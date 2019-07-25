@@ -79,12 +79,37 @@
     //
     // test if a specific row on this board contains a conflict
     hasRowConflictAt: function(rowIndex) {
-      return false; // fixme
+      // get board at row index set to variable
+      // use higher order function any to determine if 'some' of the elements equal one. 
+      // return result of higher order function 
+      // console.log( board.get(rowIndex)
+      //       .some( ele => ele === 1) );
+      return this.get(rowIndex).reduce( (acc,curr) => acc + curr, 0) > 1 ? true : false;
+      // return this.get(rowIndex).some( ele => ele === 1);
+
+// var total = [ 0, 1, 2, 3 ].reduce(
+//   ( accumulator, currentValue ) => accumulator + currentValue,
+//   0
+// );
+
+      // console.log(board.get(rowIndex));
+      // return false; // fixme
     },
 
     // test if any rows on this board contain conflicts
     hasAnyRowConflicts: function() {
-      return false; // fixme
+      // get all rows of board and set to variable
+      // return array with high order funciton
+      // if any of rows has row conflict, return true
+
+      let arr2d = this.rows();
+
+      for (let i=0; i < arr2d.length; i++) {
+        if (this.hasRowConflictAt(i)) {
+          return true;
+        }
+      }
+      return false; // fixme <-- fixed
     },
 
 
@@ -94,11 +119,32 @@
     //
     // test if a specific column on this board contains a conflict
     hasColConflictAt: function(colIndex) {
-      return false; // fixme
+      // set rows of board to variable
+      // loop though variable
+        // if array[i][colIndex] === 1
+         // return true
+      // if no true is found return false
+      return this.rows().reduce( (acc,curr) => acc + curr[colIndex], 0) > 1 ? true : false;
+    
+;
+      // return this.rows().some( row => row[colIndex] === 1);
+
+         // return this.get(rowIndex).reduce( (acc,curr) => acc + curr, 0) > 1 ? true : false;
+
+      // return false; // fixme
     },
 
     // test if any columns on this board contain conflicts
     hasAnyColConflicts: function() {
+      // set rows of board to variable
+      // loop through variable 
+        // if element is equal to 1, return true
+      console.log(this.attributes)
+      for (let i = 0; i < this.rows().length; i++) {
+        if (this.hasColConflictAt(i)) {
+          return true;
+        }
+      }
       return false; // fixme
     },
 
@@ -109,6 +155,8 @@
     //
     // test if a specific major diagonal on this board contains a conflict
     hasMajorDiagonalConflictAt: function(majorDiagonalColumnIndexAtFirstRow) {
+      
+
       return false; // fixme
     },
 
