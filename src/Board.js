@@ -136,7 +136,6 @@
       // set rows of board to variable
       // loop through variable 
         // if element is equal to 1, return true
-      console.log(this.attributes)
       for (let i = 0; i < this.rows().length; i++) {
         if (this.hasColConflictAt(i)) {
           return true;
@@ -156,11 +155,15 @@
       // console.log(`majDiagColIdxatFirstRow is ${majorDiagonalColumnIndexAtFirstRow}`);
       // return this.rows().reduce( (acc,curr) => acc + curr[colIndex], 0) > 1 ? true : false;
       let count = 0;
-      for (let i = 0; i < myBoard.length && majorDiagonalColumnIndexAtFirstRow < myBoard.length; i++) {
-         if (myBoard[i][majorDiagonalColumnIndexAtFirstRow] === 1){
+      let md = majorDiagonalColumnIndexAtFirstRow
+      for (let i = 0; i < myBoard.length; i++) {
+         if (md > myBoard.length) {
+          break;
+         }
+         if (myBoard[i][md] === 1) {
            count++;
          }
-         majorDiagonalColumnIndexAtFirstRow++;
+         md++;
       }
       return count > 1; 
 
@@ -172,7 +175,7 @@
       // will do a for loop, and we will pass in at i
       // do an if statement inside loop return true
       // if for loop doesn't return true, return false.
-      var arr = this.rows();
+      let arr = this.rows();
       for (let i = -(arr.length - 1); i < arr.length; i++) {
         if (this.hasMajorDiagonalConflictAt(i)) {
           return true;
@@ -188,12 +191,42 @@
     //
     // test if a specific minor diagonal on this board contains a conflict
     hasMinorDiagonalConflictAt: function(minorDiagonalColumnIndexAtFirstRow) {
-      return false; // fixme
+      // set the 2d array called this.rows that duplicates the board
+      let twoDArr = this.rows();
+      // set a count variable initialized to zero that will increment
+      let count = 0;
+      let md = minorDiagonalColumnIndexAtFirstRow;
+      // iterate through the array 
+      for (let i = 0; i < twoDArr.length; i++){
+        // check each element along the minor diagonal and 
+        console.log(`row index is ${i} and col index is ${md-i}.`);
+        if(twoDArr[i][md-i] === 1){
+          // console.log(twoDArr[i][md-i], 'after minus')
+          // increment the counter if the element is equal to 1
+          count++
+        }
+        
+      }
+      // return whether the counter is 2 
+      return count > 1;
+      return false;
     },
 
     // test if any minor diagonals on this board contain conflicts
     hasAnyMinorDiagonalConflicts: function() {
-      return false; // fixme
+      // varaible named arr and set to board
+      let arr = this.rows();
+      // look through arr with changing the breaking condition to be arr.length plus arr.length minus one
+      for (let i = 0; i < arr.length + (arr.length - 1); i++){
+        // if there is a minor diagonal conflict (the function runs true)
+        if (this.hasMinorDiagonalConflictAt(i)){
+          // return true
+          return true;
+        }
+      }
+      // if we do not find any true staments in the for loop
+      // return false
+      return false;
     }
 
     /*--------------------  End of Helper Functions  ---------------------*/
