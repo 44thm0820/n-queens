@@ -124,11 +124,8 @@
         // if array[i][colIndex] === 1
          // return true
       // if no true is found return false
-      return this.rows().reduce( (acc,curr) => acc + curr[colIndex], 0) > 1 ? true : false;
-    
-;
+      return this.rows().reduce( (acc,curr) => acc + curr[colIndex], 0) > 1;
       // return this.rows().some( row => row[colIndex] === 1);
-
          // return this.get(rowIndex).reduce( (acc,curr) => acc + curr, 0) > 1 ? true : false;
 
       // return false; // fixme
@@ -155,13 +152,32 @@
     //
     // test if a specific major diagonal on this board contains a conflict
     hasMajorDiagonalConflictAt: function(majorDiagonalColumnIndexAtFirstRow) {
-      
+      var myBoard = this.rows();
+      // console.log(`majDiagColIdxatFirstRow is ${majorDiagonalColumnIndexAtFirstRow}`);
+      // return this.rows().reduce( (acc,curr) => acc + curr[colIndex], 0) > 1 ? true : false;
+      let count = 0;
+      for (let i = 0; i < myBoard.length && majorDiagonalColumnIndexAtFirstRow < myBoard.length; i++) {
+         if (myBoard[i][majorDiagonalColumnIndexAtFirstRow] === 1){
+           count++;
+         }
+         majorDiagonalColumnIndexAtFirstRow++;
+      }
+      return count > 1; 
 
-      return false; // fixme
     },
 
     // test if any major diagonals on this board contain conflicts
     hasAnyMajorDiagonalConflicts: function() {
+      // set the variable called array set this.rows
+      // will do a for loop, and we will pass in at i
+      // do an if statement inside loop return true
+      // if for loop doesn't return true, return false.
+      var arr = this.rows();
+      for (let i = 0; i < arr.length; i++) {
+        if (this.hasMajorDiagonalConflictAt(i)) {
+          return true;
+        }
+      }
       return false; // fixme
     },
 
