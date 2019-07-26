@@ -199,7 +199,7 @@
       // iterate through the array 
       for (let i = 0; i < twoDArr.length; i++){
         // check each element along the minor diagonal and 
-        console.log(`row index is ${i} and col index is ${md-i}.`);
+    
         if(twoDArr[i][md-i] === 1){
           // console.log(twoDArr[i][md-i], 'after minus')
           // increment the counter if the element is equal to 1
